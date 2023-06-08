@@ -3,19 +3,25 @@
 
 .postList {
     background-color: $postBackground;
-    width: 700px;
+    width: 100%;
+    margin: 24px 0;
     padding: 24px;
+
+    @include media('>=tablet') {
+        margin: 0;
+    }
 
     .postListContent {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 12px;
+        gap: 24px;
         place-items: center;
     }
 
     button {
-        display: block; 
+        display: block;
         margin: 0 auto;
+        margin-top: 120px;
         width: 160px;
         height: 40px;
         border-radius: 20px;

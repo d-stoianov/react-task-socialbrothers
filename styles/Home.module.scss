@@ -2,5 +2,12 @@
 @import "./colors/colors.scss";
 
 .container {
-    padding: 5% 10%;
+    padding: 5% 1%;
+    
+    @include media('>=tablet') {
+        display: flex;
+        align-items: flex-start;
+        gap: 24px;
+        justify-content: space-around;
+    }
 }
