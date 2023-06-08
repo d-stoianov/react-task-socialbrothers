@@ -1,0 +1,29 @@
+@import "./breakpoints/breakpoints.scss";
+@import "./colors/colors.scss";
+
+.postList {
+    background-color: $postBackground;
+    width: 700px;
+    padding: 24px;
+
+    .postListContent {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 12px;
+        place-items: center;
+    }
+
+    button {
+        display: block; 
+        margin: 0 auto;
+        width: 160px;
+        height: 40px;
+        border-radius: 20px;
+        border: none;
+        background-color: $primaryButton;
+        font-size: 12px;
+        font-weight: 600;
+        color: $buttonText;
+        cursor: pointer;
+    }
+}
