@@ -1,0 +1,61 @@
+@import "./breakpoints/breakpoints.scss";
+@import "./colors/colors.scss";
+
+.header {
+    position: relative;
+    width: 100%;
+    height: auto;
+    img {
+        width: 100%;
+        z-index: 0;
+    }
+}
+
+.headerContent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 3% 10%;
+
+    img {
+        width: 35%;
+        z-index: 1;
+    }
+
+    @include media('<=tablet') {
+        img {
+            width: 30%;
+        }
+    }
+}
+
+.links {
+    a {
+        color: $headerText;
+        font-size: 12px;
+        display: inline-block;
+        margin: 0 16px;
+    }
+
+    a:hover {
+        border-bottom: solid 2px $headerTextUnderline;
+        cursor: pointer;
+    }
+    
+    @include media('>=tablet') {
+        a {
+            font-size: 1.5rem;
+            margin: 0 1.25em;
+            padding-bottom: 0.25em;
+        }
+    }
+
+    @include media('>=desktop') {
+        a {
+            font-size: 2.5rem;
+        }
+    }
+}
