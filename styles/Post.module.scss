@@ -1,0 +1,42 @@
+@import "./colors/colors.scss";
+
+.post {
+    background-color: $postBackground;
+    width: 300px;
+    height: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+    .image {
+        position: relative;
+        img {
+            width: 100%;
+        }
+    }
+
+    .imageContent {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        color: $postImageContent;
+        font-size: 8px;
+        font-style: italic;
+        padding: 8px 16px;
+    }
+
+    .postContent {
+        padding: 16px;
+        h1 {
+            margin-bottom: 8px;
+            font-size: 24px;
+            color: $postTitle;
+        }
+    }
+
+    .description {
+        color: $postDescription;
+        width: 100%;
+    }
+}

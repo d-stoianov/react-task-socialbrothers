@@ -2,6 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.scss'
 import Header from '@/components/header'
 import Form from '@/components/form'
+import Post from '@/components/post'
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Header />
       <div className={styles.container}>
         <Form />
+        <Post />
       </div>
     </>
   )
