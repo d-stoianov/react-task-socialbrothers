@@ -1,5 +1,7 @@
+@import './colors/colors';
+
 body {
-  background-color: white;
+  background-color: $background;
 }
 
 * {
@@ -7,4 +9,16 @@ body {
   padding: 0;
   margin: 0;
   text-decoration: none;
+}
+
+img {
+  display: block;
+}
+
+button {
+  display: block;
+}
+
+input {
+  all: unset;
 }
