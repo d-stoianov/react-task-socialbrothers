@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import styles from '../styles/Home.module.scss'
 import Header from '@/components/header'
 import Form from '@/components/form'
 
@@ -10,7 +11,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Header />
-      <Form />
+      <div className={styles.container}>
+        <Form />
+      </div>
     </>
   )
 }
