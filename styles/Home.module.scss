@@ -2,7 +2,7 @@
 @import "./colors/colors.scss";
 
 .container {
-    padding: 5% 8%;
+    padding: 64px 8%;
     
     @include media('>=tablet') {
         display: flex;
