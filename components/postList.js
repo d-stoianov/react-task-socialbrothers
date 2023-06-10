@@ -1,7 +1,7 @@
 import styles from "../styles/PostList.module.scss"
 import Post from "./post"
 
-export default function postList({ posts }) {
+export default function postList({ posts, loadMorePosts }) {
     return (
         <div className={styles.postList}>
             <div className={styles.postListContent}>
@@ -10,7 +10,7 @@ export default function postList({ posts }) {
                     description={post.description} image={post.imageUrl} />
                 })}
             </div>
-            <button>Laad meer</button>
+            <button onClick={loadMorePosts}>Laad meer</button>
         </div>
     )
 }

@@ -20,6 +20,14 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ initialPosts }) {
+  const [currentPosts, setCurrentPosts] = useState(initialPosts)
+
+  async function loadMorePosts() {
+    pageNumber += 1
+    const additionalPosts = await service.getPosts(pageNumber, pageSize)
+    setCurrentPosts([...currentPosts, ...additionalPosts])
+  }
+
   return (
     <>
       <Head>
@@ -29,7 +37,7 @@ export default function Home({ initialPosts }) {
       <Header />
       <div className={styles.container}>
         <Form />
-        <PostList posts={initialPosts} />
+        <PostList loadMorePosts={loadMorePosts} posts={currentPosts} />
       </div>
     </>
   )
