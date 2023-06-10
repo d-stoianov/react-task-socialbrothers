@@ -1,17 +1,38 @@
 import styles from '../styles/Form.module.scss'
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 
-export default function Form() {
-
+export default function Form({ onFormSubmit }) {
     const [imageName, setImageName] = useState("Kies bestand")
     const [imagePreview, setImagePreview] = useState("images/camera.svg")
+    const [image, setImage] = useState()
+    const formTitle = useRef("")
+    const formCategory = useRef("")
+    const formDescription = useRef("")
 
     function handleImageUpload (event) {
         if (event !== undefined) {
             const file = event.target.files[0];
+            setImage(file)
             setImageName(file.name)
             setImagePreview(URL.createObjectURL(file))
         }
+    }
+
+    async function handleSubmit() {
+      const postData = {
+        title: formTitle.current.value,
+        categoryId: 1, // deall with category
+        description: formDescription.current.value,
+        image: image,
+        imageName: imageName,
+      }
+
+      // show loader (block interface)
+
+      await onFormSubmit(postData)
+      // post succeeded
+
+      // hide loader
     }
 
     return (
@@ -20,12 +41,12 @@ export default function Form() {
 
         <div className={styles.formElement}>
           <h3>Berichtnaam</h3>
-          <input placeholder='Geen titel'/>
+          <input ref={formTitle} placeholder='Geen titel'/>
         </div>
 
         <div className={styles.formElement}>
           <h3>Categorie</h3>
-          <input placeholder='Geen categorie'/>
+          <input ref={formCategory} placeholder='Geen categorie'/>
         </div>
 
         <div className={styles.formElement}>
@@ -43,10 +64,10 @@ export default function Form() {
 
         <div className={styles.formElement}>
           <h3>Bericht</h3>
-          <textArea></textArea>
+          <textArea ref={formDescription}></textArea>
         </div>
 
-        <button>Bericht aanmaken</button>
+        <button onClick={handleSubmit}>Bericht aanmaken</button>
       </div>
     )
 }

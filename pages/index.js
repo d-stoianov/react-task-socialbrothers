@@ -28,6 +28,17 @@ export default function Home({ initialPosts }) {
     setCurrentPosts([...currentPosts, ...additionalPosts])
   }
 
+  async function createPost(postData) {
+    if (!postData) {
+      return
+    }
+    await service.createPost(postData.title, postData.categoryId, 
+      postData.description, postData.image, postData.imageName )
+
+    const refreshedPosts = await service.getPosts(1, currentPosts.length) // reload posts
+    setCurrentPosts(refreshedPosts)
+  }
+
   return (
     <>
       <Head>
@@ -36,7 +47,7 @@ export default function Home({ initialPosts }) {
       </Head>
       <Header />
       <div className={styles.container}>
-        <Form />
+        <Form onFormSubmit={createPost} />
         <PostList loadMorePosts={loadMorePosts} posts={currentPosts} />
       </div>
     </>

@@ -25,4 +25,24 @@ export class ApiService {
             }
         })
     }
+
+    async createPost(title, categoryId, description, image, imageName) {
+        const url = `${this.apiRoot}/posts`
+
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("content", description);
+        formData.append("category_id", categoryId);
+        formData.append("image", image, imageName);
+
+        const response = await fetch(url, {
+            method: "POST",
+            body: formData,
+            headers: {
+                token: "pj11daaQRz7zUIH56B9Z",
+            }
+        })
+
+        return response
+    }
 }
