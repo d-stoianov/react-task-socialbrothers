@@ -32,4 +32,8 @@
         color: $buttonText;
         cursor: pointer;
     }
+
+    button:hover {
+        background-color: darken($color: $primaryButton, $amount: 10);
+    }
 }
