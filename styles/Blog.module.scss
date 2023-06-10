@@ -1,0 +1,22 @@
+@import "@/styles/colors/colors";
+
+.title {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 48px;
+    color: $pageTitle;
+}
+
+.container {
+    padding: 64px 10%;
+    width: 100%;
+
+    .containerContent {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+        place-items: start;
+    }
+}
