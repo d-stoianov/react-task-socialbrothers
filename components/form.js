@@ -87,14 +87,23 @@ export default function Form({ categories, onFormSubmit }) {
       <div className={styles.formElement}>
         <h3>Categorie</h3>
         <div className={styles.dropdown}>
-          <select value={formCategoryId}
-          onChange={handleCategoryIdChange}>
-            <option selected={true} disabled={true} defaultValue="">Geen categorie</option>
-            {categories.map(category => {
-              return <option key={category.id} value={category.id}>{category.name}</option>
-            })}
-            
-          </select>
+          {/* change this */}
+          {formCategoryId ? 
+            <select value={formCategoryId}
+            onChange={handleCategoryIdChange}>
+              <option selected={true} disabled={true} defaultValue="">Geen categorie</option>
+              {categories.map(category => {
+                return <option key={category.id} value={category.id}>{category.name}</option>
+              })}
+            </select>
+            : <select value={formCategoryId} className={styles.chosen}
+            onChange={handleCategoryIdChange}>
+              <option selected={true} disabled={true} defaultValue="">Geen categorie</option>
+              {categories.map(category => {
+                return <option style={{ color: 'black'}} key={category.id} value={category.id}>{category.name}</option>
+              })}
+            </select>
+          }
           <img className={styles.arrow} src="images/dropdown-arrow.svg" />
         </div>      
       </div>
