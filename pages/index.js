@@ -3,8 +3,23 @@ import styles from '../styles/Home.module.scss'
 import Header from '@/components/header'
 import Form from '@/components/form'
 import PostList from '@/components/postList'
+import { useState } from 'react';
+import { ApiService } from '@/service/api-service';
 
-export default function Home() {
+const service = new ApiService()
+let pageNumber = 1
+const pageSize = 4
+
+export async function getServerSideProps() {
+  const initialPosts = await service.getPosts(pageNumber, pageSize);
+  return {
+    props: {
+      initialPosts,
+    },
+  };
+}
+
+export default function Home({ initialPosts }) {
   return (
     <>
       <Head>
@@ -14,7 +29,7 @@ export default function Home() {
       <Header />
       <div className={styles.container}>
         <Form />
-        <PostList />
+        <PostList posts={initialPosts} />
       </div>
     </>
   )

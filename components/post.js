@@ -1,20 +1,30 @@
 import styles from "../styles/Post.module.scss"
 
-export default function Post() {
+function formatDate(date) {
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+}
+
+export default function Post({ title, date, category, description, image }) {
+    const defaultImage = "images/post.png"
+    const formattedDate = formatDate(new Date(date))
+
     return (
         <div className={styles.post}>
             <div className={styles.image}>
-                <img src="images/mask.png" />
+                {image ? <img src={image} /> : <img src={defaultImage} />}
+               
                 <div className={styles.imageContent}>
-                    <p>12-16-2019</p>
-                    <p>Tech</p>
+                    <p>{formattedDate}</p>
+                    <p>{category}</p>
                 </div>
             </div>
             <div className={styles.postContent}>
-                <h1>Heading</h1>
+                <h1>{title}</h1>
                 <div className={styles.description}>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eget metus blandit, 
-                        pharetra nisi eu, aliquet leo. risus, id lobortis massa ultrices nec.</p>
+                    <p>{description}</p>
                 </div>
             </div>
         </div>
