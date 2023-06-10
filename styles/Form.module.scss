@@ -78,8 +78,8 @@
     }
 
     textArea {
-        max-width: 100%;
         width: 100%;
+        resize: vertical;
         height: 100px;
         padding: 10px;
         
