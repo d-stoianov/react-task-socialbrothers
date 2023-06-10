@@ -20,7 +20,8 @@ export class ApiService {
                 title: dto.title,
                 date: dto.created_at,
                 category: dto.category.name,
-                imageUrl: `${this.imageRoot}/${dto.img_url}`
+                imageUrl: `${this.imageRoot}/${dto.img_url}`,
+                description: dto.content,
             }
         })
     }
