@@ -1,13 +1,13 @@
 import styles from '../styles/Form.module.scss';
 import React, { useEffect, useState } from 'react';
 
-export default function Form({ onFormSubmit }) {
+export default function Form({ categories, onFormSubmit }) {
   const [imageName, setImageName] = useState("");
   const [imagePreview, setImagePreview] = useState("images/camera.svg");
   const [image, setImage] = useState();
   const [isDisabled, setIsDisabled] = useState(true);
   const [formTitle, setFormTitle] = useState("");
-  const [formCategory, setFormCategory] = useState("");
+  const [formCategoryId, setformCategoryId] = useState(null);
   const [formDescription, setFormDescription] = useState("");
 
   const maxDescriptionLength = 300
@@ -38,19 +38,25 @@ export default function Form({ onFormSubmit }) {
   function handleTitleChange(event) {
     const value = event.target.value;
     setFormTitle(value);
-    setIsDisabled(value === "" || formDescription === "");
+    setIsDisabled(value === "" || formDescription === "" || formCategoryId === null);
+  }
+
+  function handleCategoryIdChange(event) {
+    const value = event.target.value;
+    setformCategoryId(value);
+    setIsDisabled(value === null || formDescription === "" || formTitle == "");
   }
 
   function handleDescriptionChange(event) {
     const value = event.target.value;
     setFormDescription(value);
-    setIsDisabled(value === "" || formTitle === "");
+    setIsDisabled(value === "" || formTitle === "" || formCategoryId === null);
   }
 
   function handleSubmit() {
     const postData = {
       title: formTitle,
-      categoryId: 1, // deal with category
+      categoryId: formCategoryId,
       description: formDescription,
       image: image,
       imageName: imageName,
@@ -81,16 +87,15 @@ export default function Form({ onFormSubmit }) {
       <div className={styles.formElement}>
         <h3>Categorie</h3>
         <div className={styles.dropdown}>
-          <select value={formCategory}
-          onChange={event => setFormCategory(event.target.value)}>
-            <option selected={true} disabled={true} value="Geen categorie">Geen categorie</option>
-            <option value="Tech">Tech</option>
-            <option value="Nieuws">Nieuws</option>
-            <option value="Sports">Sports</option>
-            <option value="Lokaal">Lokaal</option>
+          <select value={formCategoryId}
+          onChange={handleCategoryIdChange}>
+            <option selected={true} disabled={true} value="">Geen categorie</option>
+            {categories.map(category => {
+              return <option id={category.id} value={category.id}>{category.name}</option>
+            })}
+            
           </select>
           <img className={styles.arrow} src="images/dropdown-arrow.svg" />
-          
         </div>      
       </div>
 

@@ -26,6 +26,25 @@ export class ApiService {
         })
     }
 
+    async getCategories() {
+        const url = `${this.apiRoot}/categories`
+
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                token: "pj11daaQRz7zUIH56B9Z"
+            }
+        })
+
+        const json = await response.json()
+        return json.map(dto => {
+            return {
+                id: dto.id,
+                name: dto.name
+            }
+        })
+    }
+
     async createPost(title, categoryId, description, image, imageName) {
         const url = `${this.apiRoot}/posts`
 

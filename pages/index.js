@@ -12,14 +12,16 @@ const pageSize = 4
 
 export async function getServerSideProps() {
   const initialPosts = await service.getPosts(pageNumber, pageSize);
+  const categories = await service.getCategories()
   return {
     props: {
       initialPosts,
+      categories,
     },
   };
 }
 
-export default function Home({ initialPosts }) {
+export default function Home({ initialPosts, categories }) {
   const [currentPosts, setCurrentPosts] = useState(initialPosts)
 
   async function loadMorePosts() {
@@ -47,7 +49,7 @@ export default function Home({ initialPosts }) {
       </Head>
       <Header />
       <div className={styles.container}>
-        <Form onFormSubmit={createPost} />
+        <Form categories={categories} onFormSubmit={createPost} />
         <PostList loadMorePosts={loadMorePosts} posts={currentPosts} />
       </div>
     </>
