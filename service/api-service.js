@@ -26,6 +26,20 @@ export class ApiService {
         })
     }
 
+    async getTotalPostsAmount() {
+        const url = `${this.apiRoot}/posts?page=1&perPage=1&sortBy=created_at&sortDirection=desc&`
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                token: "pj11daaQRz7zUIH56B9Z",
+            }
+        })
+
+        const json = await response.json()
+
+        return json.total
+    }
+
     async getCategories() {
         const url = `${this.apiRoot}/categories`
 
