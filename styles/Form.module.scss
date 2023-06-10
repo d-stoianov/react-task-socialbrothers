@@ -21,6 +21,7 @@
         color: $formSubTitle;
         font-size: 12px;
         font-weight: 300;
+        margin-bottom: 8px;
     }
 
     .formElement {
@@ -28,7 +29,6 @@
         input {
             width: 100%;
             height: 40px;
-            margin-top: 8px;
             padding-left: 6px;
             background-color: $formPlaceholder;
             border-radius: 2px;
@@ -39,6 +39,30 @@
                 color: $formPlaceholderText;
             }
         }
+
+        .dropdown {
+            position: relative;
+            select {
+                width: 100%;
+                height: 40px;
+                padding-left: 6px;
+                background-color: $formPlaceholder;
+                border-radius: 2px;
+                font-size: 12px;
+                font-style: italic;
+                align-items: center;
+            }
+    
+            .arrow {
+                position: absolute;
+                right: 16px;
+                top: 40%;
+                width: 10px;
+                transform: rotate(0deg);
+                transition: transform 0.3s ease;
+            }
+        }
+
         
         .imgUpload {
             margin-top: 20px;

@@ -80,11 +80,18 @@ export default function Form({ onFormSubmit }) {
 
       <div className={styles.formElement}>
         <h3>Categorie</h3>
-        <input
-          value={formCategory}
-          placeholder='Geen categorie'
-          onChange={event => setFormCategory(event.target.value)}
-        />
+        <div className={styles.dropdown}>
+          <select value={formCategory}
+          onChange={event => setFormCategory(event.target.value)}>
+            <option selected={true} disabled={true} value="Geen categorie">Geen categorie</option>
+            <option value="Tech">Tech</option>
+            <option value="Nieuws">Nieuws</option>
+            <option value="Sports">Sports</option>
+            <option value="Lokaal">Lokaal</option>
+          </select>
+          <img className={styles.arrow} src="images/dropdown-arrow.svg" />
+          
+        </div>      
       </div>
 
       <div className={styles.formElement}>
