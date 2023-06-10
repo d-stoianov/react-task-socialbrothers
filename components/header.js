@@ -1,4 +1,5 @@
 import styles from '../styles/Header.module.scss'
+import Link from 'next/link';
 
 export default function Header() {
     return (
@@ -7,8 +8,8 @@ export default function Header() {
             <div className={styles.headerContent}>
                 <img src='images/logo.svg' />
                 <div className={styles.links}>
-                    <a>Home</a>
-                    <a>Blog</a>
+                    <Link href="/">Home</Link>
+                    <Link href="/blog">Blog</Link>
                 </div>
             </div>
       </div>
