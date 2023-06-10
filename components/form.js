@@ -89,9 +89,9 @@ export default function Form({ categories, onFormSubmit }) {
         <div className={styles.dropdown}>
           <select value={formCategoryId}
           onChange={handleCategoryIdChange}>
-            <option selected={true} disabled={true} value="">Geen categorie</option>
+            <option selected={true} disabled={true} defaultValue="">Geen categorie</option>
             {categories.map(category => {
-              return <option id={category.id} value={category.id}>{category.name}</option>
+              return <option key={category.id} value={category.id}>{category.name}</option>
             })}
             
           </select>
