@@ -26,8 +26,7 @@ export default function Blog({ initialPosts }) {
             <title>Blog</title>
             <meta name="viewport" content="width=device-width, initial-scale=1" />
         </Head>
-        <Header />
-        <h1 className={styles.title}>Blog</h1>
+        <Header title="Blog" />
         <div className={styles.container}>
             <div className={styles.containerContent}>
                 {initialPosts.map((post, index) => {

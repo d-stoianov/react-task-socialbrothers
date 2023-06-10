@@ -1,7 +1,7 @@
 import styles from '../styles/Header.module.scss'
 import Link from 'next/link';
 
-export default function Header() {
+export default function Header({ title }) {
     return (
         <div className={styles.header}>
             <img src='images/header.png' />
@@ -12,6 +12,7 @@ export default function Header() {
                     <Link href="/blog">Blog</Link>
                 </div>
             </div>
+            <h1 className={styles.title}>{title}</h1>
       </div>
     )
 }
