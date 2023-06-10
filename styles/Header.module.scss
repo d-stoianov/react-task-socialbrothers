@@ -43,9 +43,8 @@
 .links {
     a {
         color: $headerText;
-        font-size: 16px;
         display: inline-block;
-        margin: 0 16px;
+        margin: 0 1em;
     }
 
     a:hover {
@@ -61,7 +60,7 @@
         }
     }
 
-    @include media('>=desktop') {
+    @include media('>=tablet') {
         a {
             font-size: 1.5rem;
         }
