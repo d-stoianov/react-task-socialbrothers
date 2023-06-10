@@ -3,6 +3,7 @@ import styles from '../styles/Home.module.scss'
 import Header from '@/components/header'
 import Form from '@/components/form'
 import PostList from '@/components/postList'
+import Footer from '@/components/footer'
 import { useState } from 'react';
 import { ApiService } from '@/service/api-service';
 
@@ -52,6 +53,7 @@ export default function Home({ initialPosts, categories }) {
         <Form categories={categories} onFormSubmit={createPost} />
         <PostList loadMorePosts={loadMorePosts} posts={currentPosts} />
       </div>
+      <Footer />
     </>
   )
 }

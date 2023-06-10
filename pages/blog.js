@@ -2,6 +2,7 @@ import Head from "next/head"
 import styles from "@/styles/Blog.module.scss"
 import Header from '@/components/header'
 import Post from "@/components/post"
+import Footer from "@/components/footer"
 import { useState } from "react"
 import { ApiService } from "@/service/api-service"
 
@@ -35,6 +36,7 @@ export default function Blog({ initialPosts }) {
                 })}
             </div>
         </div>
+        <Footer />
     </>
     )
 }
