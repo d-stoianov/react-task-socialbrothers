@@ -10,6 +10,8 @@ export default function Form({ onFormSubmit }) {
   const [formCategory, setFormCategory] = useState("");
   const [formDescription, setFormDescription] = useState("");
 
+  const maxDescriptionLength = 300
+
   const defaultImagePath = "images/post.png"
   // set default image
   useEffect(() => {
@@ -104,10 +106,12 @@ export default function Form({ onFormSubmit }) {
       <div className={styles.formElement}>
         <h3>Bericht</h3>
         <textarea
+          maxLength={maxDescriptionLength}
           value={formDescription}
           onChange={handleDescriptionChange}
         ></textarea>
       </div>
+      {formDescription.length} / {maxDescriptionLength}
       <button disabled={isDisabled} onClick={handleSubmit}>
         Bericht aanmaken
       </button>
