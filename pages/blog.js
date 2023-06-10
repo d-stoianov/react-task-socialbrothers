@@ -44,15 +44,21 @@ export default function Blog({ initialPosts, totalPostsAmount }) {
                     description={post.description} image={post.imageUrl} />
                 })}
             </div>
-            <ReactPaginate
-              breakLabel="..."
-              nextLabel="Volgende pagina →"
-              previousLabel=""
-              pageRangeDisplayed={5}
-              pageCount={totalPostsAmount / pageSize}
-              renderOnZeroPageCount={null}
-              onPageChange={handlePageClick}
-            />
+              <ReactPaginate
+                breakLabel="..."
+                nextLabel="Volgende pagina →"
+                previousLabel=""
+                pageRangeDisplayed={5}
+                marginPagesDisplayed={1}
+                pageCount={totalPostsAmount / pageSize}
+                renderOnZeroPageCount={null}
+                onPageChange={handlePageClick}
+                containerClassName={styles.pagination}
+                pageClassName={styles.pageItem}
+                nextLinkClassName={styles.nextButton}
+                activeClassName={styles.selectedPage}
+                breakClassName={styles.breakItem}
+              />
         </div>
         <Footer />
     </>

@@ -15,4 +15,51 @@
         gap: 24px;
         place-items: start;
     }
+
+    .pagination {
+        margin-top: 24px;
+        margin-bottom: 96px;
+        display: flex;
+        justify-content: center;
+        font-size: 12px;
+
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .pageItem {
+            padding: 0 5px;
+            cursor: pointer;
+        }
+
+        .breakItem {
+            cursor: pointer;
+        }
+
+        .selectedPage {
+            background-color: $selectedPageBackground;
+            width: 30px;
+            height: 25px;
+            box-sizing: border-box;
+            border-radius: 13px;
+            color: $selectedPageText;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .nextButton {
+            color: $primaryButton;
+            padding: 0 24px;
+            cursor: pointer;
+        }
+        
+        @include media(">=tablet") {
+            .pageItem {
+                padding: 0 10px;
+                cursor: pointer;
+            }
+        }
+    }
 }
