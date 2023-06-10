@@ -1,8 +1,8 @@
 import styles from '../styles/Form.module.scss';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function Form({ onFormSubmit }) {
-  const [imageName, setImageName] = useState("Kies bestand");
+  const [imageName, setImageName] = useState("");
   const [imagePreview, setImagePreview] = useState("images/camera.svg");
   const [image, setImage] = useState();
   const [isDisabled, setIsDisabled] = useState(true);
@@ -10,12 +10,26 @@ export default function Form({ onFormSubmit }) {
   const [formCategory, setFormCategory] = useState("");
   const [formDescription, setFormDescription] = useState("");
 
+  const defaultImagePath = "images/post.png"
+  // set default image
+  useEffect(() => {
+    fetch(defaultImagePath)
+      .then(response => response.blob())
+      .then(blob => {
+        const file = new File([blob], "default-image.png", { type: "image/png" })
+        setImage(file)
+        setImageName(file.name)
+      })
+  }, [])
+
   function handleImageUpload(event) {
     if (event !== undefined) {
       const file = event.target.files[0];
-      setImage(file);
-      setImageName(file.name);
-      setImagePreview(URL.createObjectURL(file));
+      if (file !== undefined) {
+        setImage(file);
+        setImageName(file.name);
+        setImagePreview(URL.createObjectURL(file));
+      }
     }
   }
 
@@ -76,7 +90,7 @@ export default function Form({ onFormSubmit }) {
         <div className={styles.imgUpload}>
           {imagePreview && <img src={imagePreview} alt="Preview" />}
           <label maxLength={10} htmlFor="file-input">
-            {imageName}
+          {imageName === "default-image.png" ? "Kies bestand" : imageName}
             <input
               id="file-input"
               type="file"
