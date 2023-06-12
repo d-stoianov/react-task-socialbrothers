@@ -1,5 +1,5 @@
 import '@/styles/globals.scss'
-import { Inter } from '@next/font/google'
+import { Inter } from 'next/font/google'
 
 // global font
 const inter = Inter({

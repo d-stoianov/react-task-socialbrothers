@@ -7,10 +7,11 @@ export default function Form({ categories, onFormSubmit }) {
   const [image, setImage] = useState();
   const [isDisabled, setIsDisabled] = useState(true);
   const [formTitle, setFormTitle] = useState("");
-  const [formCategoryId, setformCategoryId] = useState(null);
+  const [formCategoryId, setformCategoryId] = useState(undefined);
   const [formDescription, setFormDescription] = useState("");
 
   const maxDescriptionLength = 300
+  const defaultSelectValue = "Geen categorie"
 
   const defaultImagePath = "images/post.png"
   // set default image
@@ -89,16 +90,16 @@ export default function Form({ categories, onFormSubmit }) {
         <div className={styles.dropdown}>
           {/* change this */}
           {formCategoryId ? 
-            <select value={formCategoryId}
+            <select defaultValue={defaultSelectValue} value={formCategoryId}
             onChange={handleCategoryIdChange}>
-              <option selected={true} disabled={true} defaultValue="">Geen categorie</option>
+              <option disabled={true}>Geen categorie</option>
               {categories.map(category => {
                 return <option key={category.id} value={category.id}>{category.name}</option>
               })}
             </select>
-            : <select value={formCategoryId} className={styles.chosen}
+            : <select defaultValue={defaultSelectValue} value={formCategoryId} className={styles.chosen}
             onChange={handleCategoryIdChange}>
-              <option selected={true} disabled={true} defaultValue="">Geen categorie</option>
+              <option disabled={true}>Geen categorie</option>
               {categories.map(category => {
                 return <option style={{ color: 'black'}} key={category.id} value={category.id}>{category.name}</option>
               })}
