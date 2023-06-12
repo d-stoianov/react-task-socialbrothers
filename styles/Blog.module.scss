@@ -59,6 +59,17 @@
             .pageItem {
                 padding: 0 10px;
                 cursor: pointer;
+
+                &:hover {
+                    background-color: $selectedPageBackground;
+                    width: 30px;
+                    height: 25px;
+                    box-sizing: border-box;
+                    border-radius: 13px;
+                    color: $selectedPageText;
+                    font-size: 14px;
+                    font-weight: 700;
+                }
             }
         }
     }
