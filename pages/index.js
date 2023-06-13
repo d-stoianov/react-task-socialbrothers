@@ -38,7 +38,7 @@ export default function Home({ initialPosts, categories }) {
 		await service.createPost(postData.title, postData.categoryId,
 			postData.description, postData.image, postData.imageName)
 
-		const refreshedPosts = await service.getPosts(1, currentPosts.length) // reload posts
+		const refreshedPosts = await (await service.getPosts(1, currentPosts.length)).posts // reload posts
 		setCurrentPosts(refreshedPosts)
 	}
 
