@@ -2,144 +2,146 @@
 @import "./colors/colors.scss";
 
 .form {
-    background-color: $formBackground;
-    width: 100%;
-    padding: 24px;
+	background-color: $formBackground;
+	width: 100%;
+	padding: 24px;
 
-    @include media('>=tablet') {
-        width: 40%;
-        height: auto;
-    }
+	@include media('>=tablet') {
+		width: 40%;
+		height: auto;
+	}
 
-    h1 {
-        color: $formTitle;
-        font-size: 24px;
-        margin-bottom: 10px;
-    }
-    
-    h3 {
-        color: $formSubTitle;
-        font-size: 12px;
-        font-weight: 300;
-        margin-bottom: 8px;
-    }
+	h1 {
+		color: $formTitle;
+		font-size: 24px;
+		margin-bottom: 10px;
+	}
 
-    .formElement {
-        padding: 10px 0;
-        input {
-            width: 100%;
-            height: 40px;
-            padding-left: 6px;
-            background-color: $formPlaceholder;
-            border-radius: 2px;
-            font-size: 12px;
-            font-style: italic;
+	h3 {
+		color: $formSubTitle;
+		font-size: 12px;
+		font-weight: 300;
+		margin-bottom: 8px;
+	}
 
-            ::placeholder {
-                color: $formPlaceholderText;
-            }
-        }
+	.formElement {
+		padding: 10px 0;
 
-        .dropdown {
-            position: relative;
-            select {
-                width: 100%;
-                height: 40px;
-                padding-left: 6px;
-                background-color: $formPlaceholder;
-                border-radius: 2px;
-                font-size: 12px;
-                font-style: italic;
-                align-items: center;
-            }
+		input {
+			width: 100%;
+			height: 40px;
+			padding-left: 6px;
+			background-color: $formPlaceholder;
+			border-radius: 2px;
+			font-size: 12px;
+			font-style: italic;
 
-            .empty {
-                color: $formPlaceholderText;
-            }
+			::placeholder {
+				color: $formPlaceholderText;
+			}
+		}
 
-            .formOption {
-                color: black;
-            }
-    
-            .arrow {
-                position: absolute;
-                right: 16px;
-                top: 40%;
-                width: 10px;
-                transform: rotate(0deg);
-                transition: transform 0.3s ease;
-            }
-        }
+		.dropdown {
+			position: relative;
 
-        
-        .imgUpload {
-            margin-top: 20px;
-            width: 150px;
-            height: auto;
-            background-color: $formPlaceholder;
-            border-radius: 2px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+			select {
+				width: 100%;
+				height: 40px;
+				padding-left: 6px;
+				background-color: $formPlaceholder;
+				border-radius: 2px;
+				font-size: 12px;
+				font-style: italic;
+				align-items: center;
+			}
 
-            input[type="file"] {
-                display: none;
-            }
+			.empty {
+				color: $formPlaceholderText;
+			}
 
-            img {
-                width: 30px;
-            }
-    
-            label {
-                background-color: $secondaryButton;
-                border-radius: 10px;
-                font-weight: 200;
-                width: 85px;
-                height: 20px;
-                color: $buttonText;
-                font-size: 10px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                overflow: hidden;
-                text-align: center;
-                margin: 0 15px;
-                cursor: pointer;
-            }
-        }
-    }
+			.formOption {
+				color: black;
+			}
 
-    textArea {
-        width: 100%;
-        resize: vertical;
-        height: 100px;
-        padding: 10px;
-        
-        @include media('>=tablet') {
-            height: 200px;
-        }
-    }
+			.arrow {
+				position: absolute;
+				right: 16px;
+				top: 40%;
+				width: 10px;
+				transform: rotate(0deg);
+				transition: transform 0.3s ease;
+			}
+		}
 
-    button {
-        display: block;
-        margin: 0 auto;
-        margin-top: 24px;
-        width: 200px;
-        height: 40px;
-        border-radius: 20px;
-        border: none;
-        background-color: $primaryButton;
-        font-size: 12px;
-        font-weight: 600;
-        color: $buttonText;
-        cursor: pointer;
-    }
 
-    button:disabled {
-        cursor: not-allowed;
-    }
+		.imgUpload {
+			margin-top: 20px;
+			width: 150px;
+			height: auto;
+			background-color: $formPlaceholder;
+			border-radius: 2px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 
-    button:hover {
-        background-color: darken($color: $primaryButton, $amount: 10);
-    }
+			input[type="file"] {
+				display: none;
+			}
+
+			img {
+				width: 30px;
+			}
+
+			label {
+				background-color: $secondaryButton;
+				border-radius: 10px;
+				font-weight: 200;
+				width: 85px;
+				height: 20px;
+				color: $buttonText;
+				font-size: 10px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				overflow: hidden;
+				text-align: center;
+				margin: 0 15px;
+				cursor: pointer;
+			}
+		}
+	}
+
+	textArea {
+		width: 100%;
+		resize: vertical;
+		height: 100px;
+		padding: 10px;
+
+		@include media('>=tablet') {
+			height: 200px;
+		}
+	}
+
+	button {
+		display: block;
+		margin: 0 auto;
+		margin-top: 24px;
+		width: 200px;
+		height: 40px;
+		border-radius: 20px;
+		border: none;
+		background-color: $primaryButton;
+		font-size: 12px;
+		font-weight: 600;
+		color: $buttonText;
+		cursor: pointer;
+	}
+
+	button:disabled {
+		cursor: not-allowed;
+	}
+
+	button:hover {
+		background-color: darken($color: $primaryButton, $amount: 10);
+	}
 }

@@ -1,36 +1,36 @@
 @import './colors/colors';
 
 body {
-  background-color: $background;
+	background-color: $background;
 }
 
 * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	text-decoration: none;
 }
 
 img {
-  display: block;
+	display: block;
 }
 
 button {
-  display: block;
+	display: block;
 }
 
 input {
-  all: unset;
+	all: unset;
 }
 
 select {
-  all: unset;
+	all: unset;
 }
 
 ul {
-  all: unset;
+	all: unset;
 }
 
 li {
-  all: unset;
+	all: unset;
 }

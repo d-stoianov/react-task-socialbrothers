@@ -2,73 +2,73 @@
 @import "@/styles/colors/colors";
 
 .container {
-    padding: 32px 10%;
-    width: 100%;
+	padding: 32px 10%;
+	width: 100%;
 
-    @include media(">=tablet") {
-        padding: 64px 10%;
-    }
+	@include media(">=tablet") {
+		padding: 64px 10%;
+	}
 
-    .containerContent {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 24px;
-        place-items: start;
-    }
+	.containerContent {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 24px;
+		place-items: start;
+	}
 
-    .pagination {
-        margin-top: 24px;
-        margin-bottom: 96px;
-        display: flex;
-        justify-content: center;
-        font-size: 12px;
+	.pagination {
+		margin-top: 24px;
+		margin-bottom: 96px;
+		display: flex;
+		justify-content: center;
+		font-size: 12px;
 
-        li {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .pageItem {
-            padding: 0 5px;
-            cursor: pointer;
-        }
+		li {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
 
-        .breakItem {
-            cursor: pointer;
-        }
+		.pageItem {
+			padding: 0 5px;
+			cursor: pointer;
+		}
 
-        .selectedPage {
-            background-color: $selectedPageBackground;
-            width: 30px;
-            height: 25px;
-            border-radius: 13px;
-            color: $selectedPageText;
-            font-size: 14px;
-            font-weight: 700;
-        }
+		.breakItem {
+			cursor: pointer;
+		}
 
-        .nextButton {
-            color: $primaryButton;
-            padding: 0 24px;
-            cursor: pointer;
-        }
-        
-        @include media(">=tablet") {
-            .pageItem {
-                padding: 0 10px;
-                width: 30px;
-                cursor: pointer;
+		.selectedPage {
+			background-color: $selectedPageBackground;
+			width: 30px;
+			height: 25px;
+			border-radius: 13px;
+			color: $selectedPageText;
+			font-size: 14px;
+			font-weight: 700;
+		}
 
-                &:hover {
-                    background-color: $selectedPageBackground;
-                    height: 25px;
-                    border-radius: 13px;
-                    color: $selectedPageText;
-                    font-size: 14px;
-                    font-weight: 700;
-                }
-            }
-        }
-    }
+		.nextButton {
+			color: $primaryButton;
+			padding: 0 24px;
+			cursor: pointer;
+		}
+
+		@include media(">=tablet") {
+			.pageItem {
+				padding: 0 10px;
+				width: 30px;
+				cursor: pointer;
+
+				&:hover {
+					background-color: $selectedPageBackground;
+					height: 25px;
+					border-radius: 13px;
+					color: $selectedPageText;
+					font-size: 14px;
+					font-weight: 700;
+				}
+			}
+		}
+	}
 }
