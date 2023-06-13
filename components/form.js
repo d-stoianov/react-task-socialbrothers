@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 export default function Form({ categories, onFormSubmit }) {
   const [imageName, setImageName] = useState("");
   const [imagePreview, setImagePreview] = useState("images/camera.svg");
-  const [image, setImage] = useState();
+  const [image, setImage] = useState(undefined);
   const [isDisabled, setIsDisabled] = useState(true);
   const [formTitle, setFormTitle] = useState("");
   const [formCategoryId, setformCategoryId] = useState(undefined);
@@ -13,17 +13,10 @@ export default function Form({ categories, onFormSubmit }) {
   const maxDescriptionLength = 300
   const defaultSelectValue = "Geen categorie"
 
-  const defaultImagePath = "images/post.png"
-  // set default image
   useEffect(() => {
-    fetch(defaultImagePath)
-      .then(response => response.blob())
-      .then(blob => {
-        const file = new File([blob], "default-image.png", { type: "image/png" })
-        setImage(file)
-        setImageName(file.name)
-      })
-  }, [])
+    setIsDisabled(formCategoryId === "" || formDescription === "" || 
+    formTitle === "" || image === undefined)
+  }, [formCategoryId, formDescription, formTitle, image])
 
   function handleImageUpload(event) {
     if (event !== undefined) {
@@ -36,25 +29,7 @@ export default function Form({ categories, onFormSubmit }) {
     }
   }
 
-  function handleTitleChange(event) {
-    const value = event.target.value;
-    setFormTitle(value);
-    setIsDisabled(value === "" || formDescription === "" || formCategoryId === null);
-  }
-
-  function handleCategoryIdChange(event) {
-    const value = event.target.value;
-    setformCategoryId(value);
-    setIsDisabled(value === null || formDescription === "" || formTitle == "");
-  }
-
-  function handleDescriptionChange(event) {
-    const value = event.target.value;
-    setFormDescription(value);
-    setIsDisabled(value === "" || formTitle === "" || formCategoryId === null);
-  }
-
-  function handleSubmit() {
+  async function handleSubmit() {
     const postData = {
       title: formTitle,
       categoryId: formCategoryId,
@@ -65,11 +40,11 @@ export default function Form({ categories, onFormSubmit }) {
 
     // show loader (block interface)
 
-    onFormSubmit(postData).then(() => {
+    await onFormSubmit(postData)
       // post succeeded
 
       // hide loader
-    });
+    
   }
 
   return (
@@ -81,30 +56,21 @@ export default function Form({ categories, onFormSubmit }) {
         <input
           value={formTitle}
           placeholder='Geen titel'
-          onChange={handleTitleChange}
+          onChange={event => setFormTitle(event.target.value)}
         />
       </div>
 
       <div className={styles.formElement}>
         <h3>Categorie</h3>
         <div className={styles.dropdown}>
-          {/* change this */}
-          {formCategoryId ? 
             <select defaultValue={defaultSelectValue} value={formCategoryId}
-            onChange={handleCategoryIdChange}>
+            onChange={event => setformCategoryId(event.target.value)} className={!formCategoryId && styles.empty}>
               <option disabled={true}>Geen categorie</option>
               {categories.map(category => {
-                return <option key={category.id} value={category.id}>{category.name}</option>
+                return <option key={category.id} value={category.id} 
+                className={!formCategoryId && styles.formOption}>{category.name}</option>
               })}
             </select>
-            : <select defaultValue={defaultSelectValue} value={formCategoryId} className={styles.chosen}
-            onChange={handleCategoryIdChange}>
-              <option disabled={true}>Geen categorie</option>
-              {categories.map(category => {
-                return <option style={{ color: 'black'}} key={category.id} value={category.id}>{category.name}</option>
-              })}
-            </select>
-          }
           <img className={styles.arrow} src="images/dropdown-arrow.svg" />
         </div>      
       </div>
@@ -114,7 +80,7 @@ export default function Form({ categories, onFormSubmit }) {
         <div className={styles.imgUpload}>
           {imagePreview && <img src={imagePreview} alt="Preview" />}
           <label maxLength={10} htmlFor="file-input">
-          {imageName === "default-image.png" ? "Kies bestand" : imageName}
+          {imageName ? imageName : "Kies bestand"}
             <input
               id="file-input"
               type="file"
@@ -130,7 +96,7 @@ export default function Form({ categories, onFormSubmit }) {
         <textarea
           maxLength={maxDescriptionLength}
           value={formDescription}
-          onChange={handleDescriptionChange}
+          onChange={event => setFormDescription(event.target.value)}
         ></textarea>
       </div>
       {formDescription.length} / {maxDescriptionLength}

@@ -53,8 +53,12 @@
                 align-items: center;
             }
 
-            .chosen {
+            .empty {
                 color: $formPlaceholderText;
+            }
+
+            .formOption {
+                color: black;
             }
     
             .arrow {
