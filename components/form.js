@@ -64,11 +64,11 @@ export default function Form({ categories, onFormSubmit }) {
 				<h3>Categorie</h3>
 				<div className={styles.dropdown}>
 					<select defaultValue={defaultSelectValue} value={formCategoryId}
-						onChange={event => setformCategoryId(event.target.value)} className={!formCategoryId && styles.empty}>
+						onChange={event => setformCategoryId(event.target.value)} className={formCategoryId ? "" : styles.empty}>
 						<option disabled={true}>Geen categorie</option>
 						{categories.map(category => {
 							return <option key={category.id} value={category.id}
-								className={!formCategoryId && styles.formOption}>{category.name}</option>
+								className={formCategoryId ? "" : styles.formOption}>{category.name}</option>
 						})}
 					</select>
 					<img className={styles.arrow} src="images/dropdown-arrow.svg" />
