@@ -12,8 +12,7 @@ let pageNumber = 1
 const pageSize = 8
 
 export async function getServerSideProps() {
-  const initialPosts = await service.getPosts(pageNumber, pageSize);
-  const totalPostsAmount = await service.getTotalPostsAmount()
+  const { posts: initialPosts, total: totalPostsAmount } = await service.getPosts(pageNumber, pageSize)
   return {
     props: {
       initialPosts,
@@ -27,7 +26,7 @@ export default function Blog({ initialPosts, totalPostsAmount }) {
 
     async function handlePageClick(event) {
       const pageNumber = event.selected + 1
-      setCurrentPosts(await service.getPosts(pageNumber, pageSize))
+      setCurrentPosts((await service.getPosts(pageNumber, pageSize)).posts)
     }
 
     return (

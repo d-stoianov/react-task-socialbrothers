@@ -12,7 +12,7 @@ let pageNumber = 1
 const pageSize = 4
 
 export async function getServerSideProps() {
-  const initialPosts = await service.getPosts(pageNumber, pageSize);
+  const initialPosts = (await service.getPosts(pageNumber, pageSize)).posts;
   const categories = await service.getCategories()
   return {
     props: {
@@ -27,7 +27,7 @@ export default function Home({ initialPosts, categories }) {
 
   async function loadMorePosts() {
     pageNumber += 1
-    const additionalPosts = await service.getPosts(pageNumber, pageSize)
+    const additionalPosts = (await service.getPosts(pageNumber, pageSize)).posts
     setCurrentPosts([...currentPosts, ...additionalPosts])
   }
 
