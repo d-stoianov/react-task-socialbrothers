@@ -28,19 +28,33 @@ export default function Home({ initialPosts, categories }) {
 	const [currentPosts, setCurrentPosts] = useState(initialPosts)
 
 	async function loadMorePosts() {
-		pageNumber += 1
-		const additionalPosts = (await service.getPosts(pageNumber, pageSize)).posts
-		setCurrentPosts([...currentPosts, ...additionalPosts])
+		const loaderToast = toast.info('Loading more posts...')
+
+		const response = (await service.getPosts(pageNumber, pageSize))
+
+		toast.dismiss(loaderToast)
+
+		if (!response.success) {
+			toast.error(response.errorMessage)
+		} else {
+			toast.success("Successful !")
+			const additionalPosts = response.posts
+			pageNumber += 1
+			setCurrentPosts([...currentPosts, ...additionalPosts])
+		}
 	}
 
 	async function createPost(postData) {
 		if (!postData) {
 			return
 		}
-		await service.createPost(postData.title, postData.categoryId,
+
+		const loaderToast = toast.info('Creating post...')
+
 		const response = await service.createPost(postData.title, postData.categoryId,
 			postData.description, postData.image, postData.imageName)
 
+		toast.dismiss(loaderToast)
 
 		if (!response.success) {
 			toast.error(response.errorMessage)
@@ -61,7 +75,7 @@ export default function Home({ initialPosts, categories }) {
 			<div className={styles.container}>
 				<ToastContainer
 					position="top-right"
-					autoClose={5000}
+					autoClose={2000}
 					hideProgressBar={false}
 					newestOnTop={false}
 					closeOnClick
