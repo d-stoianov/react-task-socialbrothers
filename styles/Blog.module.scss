@@ -30,7 +30,6 @@
 		}
 
 		.pageItem {
-			padding: 0 5px;
 			cursor: pointer;
 		}
 
@@ -50,19 +49,16 @@
 
 		.nextButton {
 			color: $primaryButton;
-			padding: 0 24px;
+			margin: 0 24px;
 			cursor: pointer;
 		}
 
 		@include media(">=tablet") {
 			.pageItem {
-				padding: 0 10px;
 				width: 30px;
-				cursor: pointer;
+				margin: 0 10px;
 
 				&:hover {
-					background-color: $selectedPageBackground;
-					height: 25px;
 					border-radius: 13px;
 					color: $selectedPageText;
 					font-size: 14px;
