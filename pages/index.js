@@ -4,6 +4,8 @@ import Header from '@/components/header'
 import Form from '@/components/form'
 import PostList from '@/components/postList'
 import Footer from '@/components/footer'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { useState } from 'react'
 import { ApiService } from '@/service/api-service'
 
@@ -13,7 +15,7 @@ const pageSize = 4
 
 export async function getServerSideProps() {
 	const initialPosts = (await service.getPosts(pageNumber, pageSize)).posts
-	const categories = await service.getCategories()
+	const categories = (await service.getCategories()).categories
 	return {
 		props: {
 			initialPosts,
@@ -36,10 +38,17 @@ export default function Home({ initialPosts, categories }) {
 			return
 		}
 		await service.createPost(postData.title, postData.categoryId,
+		const response = await service.createPost(postData.title, postData.categoryId,
 			postData.description, postData.image, postData.imageName)
 
-		const refreshedPosts = await (await service.getPosts(1, currentPosts.length)).posts // reload posts
-		setCurrentPosts(refreshedPosts)
+
+		if (!response.success) {
+			toast.error(response.errorMessage)
+		} else {
+			const refreshedPosts = await (await service.getPosts(1, currentPosts.length)).posts // reload posts
+			toast.success("Successful !")
+			setCurrentPosts(refreshedPosts)
+		}
 	}
 
 	return (
@@ -50,6 +59,18 @@ export default function Home({ initialPosts, categories }) {
 			</Head>
 			<Header />
 			<div className={styles.container}>
+				<ToastContainer
+					position="top-right"
+					autoClose={5000}
+					hideProgressBar={false}
+					newestOnTop={false}
+					closeOnClick
+					rtl={false}
+					pauseOnFocusLoss
+					draggable
+					pauseOnHover
+					theme="dark"
+				/>
 				<Form categories={categories} onFormSubmit={createPost} />
 				<PostList loadMorePosts={loadMorePosts} posts={currentPosts} />
 			</div>
